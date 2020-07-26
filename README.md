@@ -30,7 +30,7 @@ If you wish to provide your own function and data set to play with generation, d
 
 #### Interpreting the results
 
-Running `main.py` displays roughly the following output (see `resources/example_output.log` for
+Running `main.py` displays roughly the following output (see `resources/example_output.txt` for
 an example):
 
 ```
