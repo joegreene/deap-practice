@@ -6,7 +6,7 @@ Practice script to play with deap.algorithms.eaSimple.
 '''
 from pathlib import Path
 
-from lib import ea_simple
+from src import ea_simple
 
 
 def actual_func(x: float) -> float: # pylint: disable=invalid-name
