@@ -1,35 +1,59 @@
-# DEAP-eaSimple-Fun
-Had some fun messing around with eaSimple in DEAP
+## deap-practice
 
-## Library requirements:
-This project was developed under a virtual environment and python 3.4, although 
-2.7 and other versions of 3 should work alright.
+Practice script to play with [DEAP's eaSimple](https://deap.readthedocs.io/en/master/api/algo.html#deap.algorithms.eaSimple)
+method.
 
-After doing the below preparations, you should be able to run this project by calling 
-`python symbolic_reg.py`
+### Build requirements
 
-### Linux Preparation
-Simply use `pip install` to install the following packages
+This project was developed and tested on Python 3.8. Any version that supports the packages within
+`requirements.txt` should work though.
 
-deap==1.0.2
+It is highly recommended to [set up a virtual environment](https://docs.python.org/3/tutorial/venv.html)
+or use [Anaconda](https://www.anaconda.com/products/individual) to set up this project.
 
-numpy==1.10.1
+### Usage
 
-sympy==0.7.6.1
+After running `pip install -r requirements.txt` run `python main.py` to run the tournament.
 
-wheel==0.24.0
+To configure the script, modify the default args located within `main.py`.
 
-### Windows Preparation
-Use pip to install `deap`, `wheel`, and `sympy`. `numpy` is a bit different:
+### Interpreting the results
 
-1. Depending on your version of python, you have to install the correct corresponding package 
-from [here](http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy).
+Running `main.py` displays the following output:
 
-e.g. Writing this README I am using Python 3.4.3 on Windows 8.1 64bit, so I would download 
-`numpy-1.10.1+mkl-cp35-none-win_amd64.whl`.
+```
+<LOG RESULTS; only if verbose flag is set (default is True)>
 
-2. Afterwards, install the `.whl` file using `pip`:
+<WINNING FUNCTION>
 
-`pip install <.WHL FILE YOU DOWNLOADED>`
+<WINNING FUNCTION'S ALGEBRAIC FORM>
 
-e.g. For me it's: `pip install numpy-1.10.1+mkl-cp35-none-win_amd64.whl`
+<WINNING FUNCTION'S SIMPLIFIED FORM>
+
+<WINNING FUNCTION'S EXPANDED FORM>
+```
+
+- Log results: The results of each generation within the tournament.
+- Winning function: The best function generated as a result of running `deap.algorithms.eaSimple`.
+- Algebraic form: The winning function's default display is in a functional format (e.g. `add(x, x)`
+instead of `x + x`). The code is ran through `make_algebraic` (see `src/make_algebraic.py`) to do
+this.
+
+- Simplified form: The algebraic form can get rather long, so this shows the algebraic form ran
+through [`sympy.simplify`](https://docs.sympy.org/latest/tutorial/simplification.html#simplify).
+- Expanded form: The simplified form can sometimes be clean up a bit more (e.g. terms can be merged
+or rearranged). To do this, the simplified form is ran through
+[`sympy.expand`](https://docs.sympy.org/latest/tutorial/simplification.html#expand).
+
+### Resources
+
+- DEAP docs: <https://deap.readthedocs.io/en/master/index.html>
+- SymPy docs: <https://docs.sympy.org/latest/index.html>
+- NumPy docs (using 1.9 as of writing this): <https://numpy.org/doc/>
+
+### Future plans
+
+- Finalize folder structure for project (e.g. `src` instead of `lib` seems weird)
+- Support more than just `deap.algorithms.eaSimple`
+- Use `argparse` to provide full-blown CLI functionality
+- Resolve TODOs in code
