@@ -13,11 +13,22 @@ or use [Anaconda](https://www.anaconda.com/products/individual) to set up this p
 
 ### Usage
 
+__DISCLAIMER__: For the time being this only works on mathematical functions that take in a single
+input and provide a single output, e.g. `x**4 - 4*x**3`.
+
 After running `pip install -r requirements.txt` run `python main.py` to run the tournament.
+
+#### Modifying the inputs
 
 To configure the script, modify the default args located within `main.py`.
 
-### Interpreting the results
+If you wish to provide your own function and data set to play with generation, do the following:
+
+- Create a custom data set. Follow `resources/x4-4x3.txt` for an example on how to format your data.
+- Update `VALIDATION_FILE` to point to your custom data set.
+- Update `actual_func` so it uses your function (instead of the default `x**4 - 4*x**3`)
+
+#### Interpreting the results
 
 Running `main.py` displays the following output:
 
