@@ -68,3 +68,9 @@ or rearranged). To do this, the simplified form is ran through
 - Support more than just `deap.algorithms.eaSimple`
 - Use `argparse` to provide full-blown CLI functionality
 - Resolve TODOs in code
+
+-------------------------------------------------------------------------------
+
+Copyright &copy; 2020 Joseph Greene <joe.greene155@gmail.com>
+Released under [The MIT License] (<http://opensource.org/licenses/MIT)>
+Project located at <https://github.com/joegreene/misc-python-stuff>
