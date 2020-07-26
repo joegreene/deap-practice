@@ -15,7 +15,7 @@ Links:
 import math
 import operator
 import random
-from typing import Callable, Generator, Tuple, Union
+from typing import Callable, Generator, List, Tuple, Union
 
 from deap import algorithms, base, creator, tools, gp
 import numpy
@@ -45,10 +45,11 @@ def create_pset() -> gp.PrimitiveSet:
 
 def create_toolbox(actual_func: Callable[[float], float], tournament_size: int) -> base.Toolbox:
     '''Creates and configures a DEAP toolbox object, which contains each evolution operator.'''
-
-    # TODO(joegreene) Document the types here
-    def eval_symbol(individual, points, toolbox) -> Tuple[float]:
-        '''Computes the mean squared error between a generated candidate and the actual function.'''
+    def eval_symbol(individual: 'deap.creator.Individual', points: List[float],
+                    toolbox: base.Toolbox) -> Tuple[float]:
+        '''Computes the MSE between a candidate and the actual function to see how "good" it is.'''
+        print(f'individual type: {type(individual)}')
+        print(f'individual type: {type(individual)}')
         # Translate the tree expression into a callable function
         candidate = toolbox.compile(expr=individual)
 
@@ -73,8 +74,7 @@ def create_toolbox(actual_func: Callable[[float], float], tournament_size: int) 
     toolbox.register('population', tools.initRepeat, list, toolbox.individual)
     toolbox.register('compile', gp.compile, pset=pset)
 
-    # Evaluation function here (arguments past evalSymReg are param to pass to evalSymReg)
-    # NOTE: points refers to the training set to use
+    # Evaluation function here; points and toolbox are arguments to eval_symbol
     points = [(i-30)/10.0 for i in range(60)]
     toolbox.register('evaluate', eval_symbol, points=points, toolbox=toolbox)
 
@@ -86,9 +86,12 @@ def create_toolbox(actual_func: Callable[[float], float], tournament_size: int) 
     toolbox.register('expr_mut', gp.genFull, min_=0, max_=2)
     toolbox.register('mutate', gp.mutUniform, expr=toolbox.expr_mut, pset=pset)
 
-    # Limit mating and mutation tree heights to 17
-    toolbox.decorate('mate', gp.staticLimit(key=operator.attrgetter('height'), max_value=17))
-    toolbox.decorate('mutate', gp.staticLimit(key=operator.attrgetter('height'), max_value=17))
+    # Set max mating and mutation tree heights
+    max_tree_height = 17
+    toolbox.decorate('mate', gp.staticLimit(key=operator.attrgetter('height'),
+                                            max_value=max_tree_height))
+    toolbox.decorate('mutate', gp.staticLimit(key=operator.attrgetter('height'),
+                                              max_value=max_tree_height))
 
     return toolbox
 
@@ -137,7 +140,7 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
 
     print('Running tournament. This may take awhile.')
     algorithms.eaSimple(population, toolbox, crossover_prob, mutation_prob,
-                                   num_generations, stats, halloffame, verbose)
+                        num_generations, stats, halloffame, verbose)
 
     # Winning candidate is the first element of halloffame
     winner_raw = halloffame[0]
@@ -145,7 +148,6 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
 
     # Translate the winning candidate to a callable function (to compute its error margin versus the
     # actual data points)
-    # TODO(joegreene) Figure out if winner_callable can be used as a human-readable function
     winner_callable = toolbox.compile(winner_raw)
     margin_of_error = error_margin(validation_file, winner_callable)
     print(f'With a margin of error of {margin_of_error}, or {margin_of_error:.2f}%\n')
