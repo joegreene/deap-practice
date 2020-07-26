@@ -148,7 +148,7 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
     # TODO(joegreene) Figure out if winner_callable can be used as a human-readable function
     winner_callable = toolbox.compile(winner_raw)
     margin_of_error = error_margin(validation_file, winner_callable)
-    print(f'With a margin of error of {margin_of_error}, or {margin_of_error:.2f}%)\n')
+    print(f'With a margin of error of {margin_of_error}, or {margin_of_error:.2f}%\n')
 
     # Convert the winner from its functional form to an easier-to-read form
     algebraic_form = make_algebraic(winner_raw)
