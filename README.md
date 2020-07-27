@@ -25,8 +25,8 @@ To configure the script, modify the default args located within `main.py`.
 If you wish to provide your own function and data set to play with generation, do the following:
 
 - Create a custom data set. Follow `resources/x4-4x3.txt` for an example on how to format your data.
+- Update `ACTUAL_FUNC` so it uses your function (instead of the default `'x**4 - 4*x**3'`).
 - Update `VALIDATION_FILE` to point to your custom data set.
-- Update `actual_func` so it uses your function (instead of the default `x**4 - 4*x**3`)
 
 #### Interpreting the results
 

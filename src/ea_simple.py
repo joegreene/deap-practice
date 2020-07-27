@@ -48,8 +48,6 @@ def create_toolbox(actual_func: Callable[[float], float], tournament_size: int) 
     def eval_symbol(individual: 'deap.creator.Individual', points: List[float],
                     toolbox: base.Toolbox) -> Tuple[float]:
         '''Computes the MSE between a candidate and the actual function to see how "good" it is.'''
-        print(f'individual type: {type(individual)}')
-        print(f'individual type: {type(individual)}')
         # Translate the tree expression into a callable function
         candidate = toolbox.compile(expr=individual)
 
@@ -119,7 +117,7 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
               initial_population: int, crossover_prob: float, mutation_prob: float,
               tournament_size: int, seed: Union[int, None] = None, verbose: bool = True):
     '''Sets up and calls deap.algorithms.eaSimple using the given arguments.'''
-    # Use a constant seed value factor to get consistent results
+    # Use the passed seed value factor to get consistent results each run
     random.seed(seed)
 
     # Set up eaSimple arguments
@@ -150,7 +148,7 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
     # actual data points)
     winner_callable = toolbox.compile(winner_raw)
     margin_of_error = error_margin(validation_file, winner_callable)
-    print(f'With a margin of error of {margin_of_error}, or {margin_of_error:.2f}%\n')
+    print(f'With a margin of error of {margin_of_error} ({margin_of_error:.2f}%)\n')
 
     # Convert the winner from its functional form to an easier-to-read form
     algebraic_form = make_algebraic(winner_raw)
@@ -160,4 +158,4 @@ def ea_simple(actual_func: Callable[[float], float], validation_file: str, num_g
     print(f'Simplified form:\n{simplified_form}\n')
 
     expanded_form = sympy.expand(simplified_form)
-    print(f'Expanded form (of simplified form): {expanded_form}\n')
+    print(f'Expanded form (of simplified form): {expanded_form}')

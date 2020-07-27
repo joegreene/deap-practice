@@ -182,7 +182,7 @@ The winning function is:
 mul(add(sub(mul(x, neg(mul(-1, x))), add(add(sub(mul(neg(x), mul(-1, x)), 0), neg(neg(x))), 0)), add(add(mul(sub(x, add(mul(-1, x), sub(x, -1))), neg(x)), sub(mul(mul(sub(mul(x, neg(1)), add(add(mul(0, add(sub(x, add(add(mul(-1, x), x), add(sub(x, neg(x)), mul(sub(x, 1), x)))), add(x, sub(x, 0)))), x), add(x, add(x, mul(sub(mul(mul(0, 0), mul(x, -1)), 0), neg(x)))))), mul(add(sub(add(add(x, x), add(x, x)), neg(x)), add(sub(add(add(x, 0), add(add(x, x), x)), -1), mul(sub(x, x), neg(1)))), mul(neg(x), add(neg(sub(x, x)), add(x, x))))), mul(add(add(add(x, x), mul(0, neg(-1))), x), mul(add(sub(add(add(add(mul(sub(0, mul(sub(x, x), x)), add(mul(-1, x), sub(x, -1))), sub(0, 0)), sub(mul(x, -1), neg(0))), x), -1), neg(add(-1, x))), neg(0)))), 0)), add(add(x, x), add(x, x)))), mul(x, neg(x)))
 
 
-With a margin of error of 1.7801211893431201e-13, or 0.00%
+With a margin of error of 1.7801211893431201e-13 (0.00%)
 
 Algebraic form:
 ((((x * -(-1 * x)) - ((((-x * (-1 * x)) - 0) + --x) + 0)) + ((((x - ((-1 * x) + (x - -1))) * -x) + (((((x * -1) - (((0 * ((x - (((-1 * x) + x) + ((x - -x) + ((x - 1) * x)))) + (x + (x - 0)))) + x) + (x + (x + ((((0 * 0) * (x * -1)) - 0) * -x))))) * (((((x + x) + (x + x)) - -x) + ((((x + 0) + ((x + x) + x)) - -1) + ((x - x) * -1))) * (-x * (-(x - x) + (x + x))))) * ((((x + x) + (0 * --1)) + x) * ((((((((0 - ((x - x) * x)) * ((-1 * x) + (x - -1))) + (0 - 0)) + ((x * -1) - -0)) + x) - -1) + -(-1 + x)) * -0))) - 0)) + ((x + x) + (x + x)))) * (x * -x))
@@ -191,4 +191,3 @@ Simplified form:
 x**3*(x - 4)
 
 Expanded form (of simplified form): x**4 - 4*x**3
-
